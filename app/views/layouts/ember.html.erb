@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todos</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+</head>
+<body>
+
+<%= yield %>
+
+
+<script type="text/javascript">
+  window.MetaData = {
+    isAuthed: <%= "#{!current_user.blank?}" %>,
+    email: <%= current_user ? "'#{current_user.email}'".html_safe : "null" %>
+  }
+</script>
+<%= javascript_include_tag 'ember/index' %>
+
+</body>
+</html>

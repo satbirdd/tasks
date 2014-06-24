@@ -1,0 +1,32 @@
+<script type="text/x-handlebars">
+	<div class='head'>
+		<ul class='main-menu'>
+			<li class='active'>
+				<a href="">
+					<span class='main-menu-top'></span>
+					<span class='main-menu-item'>阶段</span>
+				</a>
+			</li>
+			<li>
+				<a href="">
+					<span class='main-menu-top'></span>
+					<span class='main-menu-item'>任务</span>
+				</a>
+			</li>
+		</ul>
+		<ul class='user-infor'>
+			<li>
+				<a href=''>
+				  <span class='main-menu-item'>
+					  {{#if currentUser}}
+					  	{{currentUser.email}}
+					  {{else}}
+					  	Login
+					  {{/if}}
+					 </span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	{{outlet}}
+</script>
