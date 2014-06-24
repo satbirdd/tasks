@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @task_item.title %>
+</p>
+
+<p>
+  <strong>Plan time:</strong>
+  <%= @task_item.plan_time %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @task_item.time %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @task_item.state %>
+</p>
+
+<%= link_to 'Edit', edit_task_item_path(@task_item) %> |
+<%= link_to 'Back', task_items_path %>

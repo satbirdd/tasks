@@ -1,0 +1,31 @@
+<h1>Listing task_items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Plan time</th>
+      <th>Time</th>
+      <th>State</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @task_items.each do |task_item| %>
+      <tr>
+        <td><%= task_item.title %></td>
+        <td><%= task_item.plan_time %></td>
+        <td><%= task_item.time %></td>
+        <td><%= task_item.state %></td>
+        <td><%= link_to 'Show', task_item %></td>
+        <td><%= link_to 'Edit', edit_task_item_path(task_item) %></td>
+        <td><%= link_to 'Destroy', task_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Task item', new_task_item_path %>

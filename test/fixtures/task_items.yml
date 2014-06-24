@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  plan_time: 9.99
+  time: 9.99
+  state: 1
+
+two:
+  title: MyString
+  plan_time: 9.99
+  time: 9.99
+  state: 1
