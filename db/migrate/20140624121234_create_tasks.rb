@@ -4,7 +4,7 @@ class CreateTasks < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.references :sprint, index: true
-      t.integer :state
+      t.integer :state, default: 0
 
       t.timestamps
     end

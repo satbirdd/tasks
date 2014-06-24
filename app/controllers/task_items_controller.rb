@@ -1,10 +1,11 @@
 class TaskItemsController < ApplicationController
+  before_action :set_task, only: [:index, :new, :create]
   before_action :set_task_item, only: [:show, :edit, :update, :destroy]
 
   # GET /task_items
   # GET /task_items.json
   def index
-    @task_items = TaskItem.all
+    @task_items = @task.items.all
   end
 
   # GET /task_items/1
@@ -14,7 +15,7 @@ class TaskItemsController < ApplicationController
 
   # GET /task_items/new
   def new
-    @task_item = TaskItem.new
+    @task_item = @task.items.build
   end
 
   # GET /task_items/1/edit
@@ -24,11 +25,11 @@ class TaskItemsController < ApplicationController
   # POST /task_items
   # POST /task_items.json
   def create
-    @task_item = TaskItem.new(task_item_params)
+    @task_item = @task.items.build(task_item_params)
 
     respond_to do |format|
       if @task_item.save
-        format.html { redirect_to @task_item, notice: 'Task item was successfully created.' }
+        format.html { redirect_to item_path(@task_item), notice: 'Task item was successfully created.' }
         format.json { render :show, status: :created, location: @task_item }
       else
         format.html { render :new }
@@ -65,6 +66,10 @@ class TaskItemsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_task_item
       @task_item = TaskItem.find(params[:id])
+    end
+
+    def set_task
+      @task = Task.find(params[:task_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
