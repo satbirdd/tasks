@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140624130307) do
+ActiveRecord::Schema.define(version: 20140624130517) do
 
   create_table "sprints", force: true do |t|
     t.string   "title"
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(version: 20140624130307) do
   end
 
   add_index "tasks", ["sprint_id"], name: "index_tasks_on_sprint_id"
+
+  create_table "user_tasks", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "task_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_tasks", ["task_id"], name: "index_user_tasks_on_task_id"
+  add_index "user_tasks", ["user_id"], name: "index_user_tasks_on_user_id"
 
   create_table "users", force: true do |t|
     t.datetime "created_at"
