@@ -33,12 +33,24 @@
 
 
 <script type="text/x-handlebars" data-template-name='tasks'>
-	<span>My Tasks</span>
-	<ul class='task-list'>
-		{{#each}}
-			<li>
-				{{title}}
-			</li>
-		{{/each}}
-	</ul>
+	<table class="table">
+    <thead>
+      <tr>
+        <th>任务名称</th>
+        <th>阶段</th>
+        <th>预定完成时间(个工作日)</th>
+        <th>完成时间(个工作日)</th>
+      </tr>
+    </thead>
+    <tbody>
+    	{{#each}}
+      <tr>
+        <td>{{title}}</td>
+        <td>{{state}}</td>
+        <td>{{planedTime}}</td>
+        <td>{{time}}</td>
+      </tr>
+			{{/each}}
+    </tbody>
+  </table>
 </script>
