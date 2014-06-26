@@ -1,32 +1,44 @@
 <script type="text/x-handlebars">
-	<div class='head'>
-		<ul class='main-menu'>
-			<li class='active'>
-				<a href="">
-					<span class='main-menu-top'></span>
-					<span class='main-menu-item'>阶段</span>
-				</a>
-			</li>
-			<li>
-				<a href="">
-					<span class='main-menu-top'></span>
-					<span class='main-menu-item'>任务</span>
-				</a>
-			</li>
-		</ul>
-		<ul class='user-infor'>
-			<li>
-				<a href=''>
-				  <span class='main-menu-item'>
-					  {{#if currentUser}}
-					  	{{currentUser.email}}
-					  {{else}}
-					  	Login
+	<nav class="navbar navbar-inverse" role="navigation">
+	  <div class="container-fluid">
+	    <div class="navbar-collapse in collapse" id="bs-example-navbar-collapse-1" style="height: auto;">
+	      <ul class="nav navbar-nav">
+          {{#each menu in topMenu}}
+						<li>
+							{{#link-to menu.href}}
+								{{menu.title}}
+							{{/link-to}}
+						</li>
+					{{/each}}
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li>
+		        {{#if currentUser}}
+					  	<a href='/'>
+					  		{{currentUser.email}}
+					  	</a>
 					  {{/if}}
-					 </span>
-				</a>
-			</li>
-		</ul>
-	</div>
+					</li>
+					<li>
+						{{#if currentUser}}
+							<%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+					  {{/if}}
+	        </li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
 	{{outlet}}
+</script>
+
+
+<script type="text/x-handlebars" data-template-name='tasks'>
+	<span>My Tasks</span>
+	<ul class='task-list'>
+		{{#each}}
+			<li>
+				{{title}}
+			</li>
+		{{/each}}
+	</ul>
 </script>
