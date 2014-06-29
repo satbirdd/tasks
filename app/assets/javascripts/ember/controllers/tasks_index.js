@@ -1,1 +1,1 @@
-App.TasksController = Em.ArrayController.extend({});
+App.TasksIndexController = Em.ArrayController.extend({});

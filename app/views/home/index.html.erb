@@ -1,56 +1,136 @@
 <script type="text/x-handlebars">
-	<nav class="navbar navbar-inverse" role="navigation">
-	  <div class="container-fluid">
-	    <div class="navbar-collapse in collapse" id="bs-example-navbar-collapse-1" style="height: auto;">
-	      <ul class="nav navbar-nav">
+  <nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-collapse in collapse" id="bs-example-navbar-collapse-1" style="height: auto;">
+        <ul class="nav navbar-nav">
           {{#each menu in topMenu}}
-						<li>
-							{{#link-to menu.href}}
-								{{menu.title}}
-							{{/link-to}}
-						</li>
-					{{/each}}
-	      </ul>
-	      <ul class="nav navbar-nav navbar-right">
-	        <li>
-		        {{#if currentUser}}
-					  	<a href='/'>
-					  		{{currentUser.email}}
-					  	</a>
-					  {{/if}}
-					</li>
-					<li>
-						{{#if currentUser}}
-							<%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-					  {{/if}}
-	        </li>
-	      </ul>
-	    </div>
-	  </div>
-	</nav>
-	{{outlet}}
+            <li>
+              {{#link-to menu.href}}
+                {{menu.title}}
+              {{/link-to}}
+            </li>
+          {{/each}}
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            {{#if currentUser}}
+              <a href='/'>
+                {{currentUser.email}}
+              </a>
+            {{/if}}
+          </li>
+          <li>
+            {{#if currentUser}}
+              <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+            {{/if}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  {{outlet}}
 </script>
 
 
-<script type="text/x-handlebars" data-template-name='tasks'>
-	<table class="table">
+<script type="text/x-handlebars" data-template-name='tasks/index'>
+  <table class="table">
     <thead>
       <tr>
         <th>任务名称</th>
         <th>阶段</th>
         <th>预定完成时间(个工作日)</th>
         <th>完成时间(个工作日)</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
-    	{{#each}}
+      {{#each}}
       <tr>
         <td>{{title}}</td>
         <td>{{state}}</td>
         <td>{{planedTime}}</td>
         <td>{{time}}</td>
+        <td>
+          {{#link-to 'tasks.task' id}}
+            查看
+          {{/link-to}}
+        </td>
       </tr>
-			{{/each}}
+      {{/each}}
     </tbody>
   </table>
+</script>
+
+<script type="text/x-handlebars" data-template-name='tasks/task'>
+  <div class="description panel panel-primary">
+    <div class="panel-body">
+      任务描述
+    </div>
+    <div class="panel-footer">
+    任务名称：{{title}}<p>
+    </div>
+    <ul class="list-group">
+      {{#each desc in descriptions}}
+        <li class="list-group-item">{{desc}}</li>
+      {{/each}}
+    </ul>
+  </div>
+
+  <div class="undestanding panel panel-primary">
+    <div class="panel-body">
+      思路与方案
+    </div>
+    <div class="panel-footer">
+    .......................
+    </div>
+  </div>
+
+  <div class="task-items panel panel-primary">
+    <div class="panel-body">
+      子任务
+      <button type="button" class="btn btn-default">
+        <span class='glyphicon glyphicon-plus'></span>添加
+      </button>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>名称</th>
+          <th>状态</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    <tbody>
+    </table>
+  </div>
+
+  <div class="gotcha panel panel-primary">
+    <div class="panel-body">
+      Gotchas
+    </div>
+    <div class="panel-footer">
+    .......................
+    </div>
+  </div>
+
+  <div class="bugs panel panel-primary">
+    <div class="panel-body">
+      Bugs
+    </div>
+    <div class="panel-footer">
+    .......................
+    </div>
+  </div>
+
+  <div class="summary panel panel-primary">
+    <div class="panel-body">
+      总结
+    </div>
+    <div class="panel-footer">
+    .......................
+    </div>
+  </div>
 </script>
