@@ -22,12 +22,10 @@ App.TasksTaskController = Em.ObjectController.extend({
 		},
 
 		addItem: function() {
-			console.log('---->', this.get('id'));
 			var item = this.store.createRecord('taskItem', {
 				taskId: this.get('id')
 			});
 
-			console.log('---->', item);
 			this.get('items').pushObject(item);
 		}
 	}
