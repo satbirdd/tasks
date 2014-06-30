@@ -8,6 +8,7 @@ App.TaskItemController = Em.Controller.extend({
 
 		save: function() {
 			this.set('editing', false);
+			console.log(this.get('model'));
 			this.get('model').save();
 		}
 	}

@@ -27,7 +27,7 @@ class TaskItemsController < ApplicationController
   # POST /task_items
   # POST /task_items.json
   def create
-    @task_item = @task.items.build(task_item_params)
+    @task_item = TaskItem.new(task_item_params)
 
     respond_to do |format|
       if @task_item.save
@@ -76,6 +76,6 @@ class TaskItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_item_params
-      params.require(:task_item).permit(:title, :plan_time, :time, :state)
+      params.require(:task_item).permit(:title, :plan_time, :time, :state, :task_id)
     end
 end
