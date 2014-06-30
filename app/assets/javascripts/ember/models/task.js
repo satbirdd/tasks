@@ -3,6 +3,6 @@ App.Task = DS.Model.extend({
 	description: DS.attr(),
 	sprint_id: DS.attr(),
 	state: DS.attr(),
-	created_at: DS.attr(),
-	updated_at: DS.attr()
+	idea: DS.attr('string'),
+	items: DS.hasMany('taskItem', {key: 'item_ids', async: true})
 });

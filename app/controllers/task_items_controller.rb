@@ -1,16 +1,18 @@
 class TaskItemsController < ApplicationController
-  before_action :set_task, only: [:index, :new, :create]
+  # before_action :set_task, only: [:index, :new, :create]
   before_action :set_task_item, only: [:show, :edit, :update, :destroy]
 
   # GET /task_items
   # GET /task_items.json
   def index
-    @task_items = @task.items.all
+    @task_items = TaskItem.find(params[:ids])
+    render json: { task_items:  @task_items }
   end
 
   # GET /task_items/1
   # GET /task_items/1.json
   def show
+    render json: { task_items:  @task_item }
   end
 
   # GET /task_items/new
@@ -30,10 +32,10 @@ class TaskItemsController < ApplicationController
     respond_to do |format|
       if @task_item.save
         format.html { redirect_to item_path(@task_item), notice: 'Task item was successfully created.' }
-        format.json { render :show, status: :created, location: @task_item }
+        format.json { render json: { task_items:  @task_item }, status: :created }
       else
         format.html { render :new }
-        format.json { render json: @task_item.errors, status: :unprocessable_entity }
+        format.json { render json: { errors: @task_item.errors }, status: :unprocessable_entity }
       end
     end
   end
@@ -44,10 +46,10 @@ class TaskItemsController < ApplicationController
     respond_to do |format|
       if @task_item.update(task_item_params)
         format.html { redirect_to @task_item, notice: 'Task item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @task_item }
+        format.json { render json: { task_items:  @task_item }, status: :ok }
       else
         format.html { render :edit }
-        format.json { render json: @task_item.errors, status: :unprocessable_entity }
+        format.json { render json: { errors: @task_item.errors }, status: :unprocessable_entity }
       end
     end
   end

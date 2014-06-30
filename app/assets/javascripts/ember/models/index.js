@@ -1,2 +1,1 @@
-//= require ember/models/user
-//= require ember/models/task
+//= require_tree .

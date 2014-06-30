@@ -3,6 +3,10 @@ class Task < ActiveRecord::Base
 
   has_many :items, class_name: 'TaskItem'
 
+  def item_ids
+  	items.select(:id).map(&:id)
+  end
+
   def state
 		case read_attribute(:state)
 		when 0

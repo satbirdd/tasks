@@ -1,2 +1,1 @@
-//= require 'ember/routes/application'
-//= require 'ember/routes/task'
+//= require_treee .

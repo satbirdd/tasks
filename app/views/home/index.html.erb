@@ -64,10 +64,8 @@
 <script type="text/x-handlebars" data-template-name='tasks/task'>
   <div class="description panel panel-primary">
     <div class="panel-body">
-      任务描述
-    </div>
-    <div class="panel-footer">
-    任务名称：{{title}}<p>
+      <h3>{{title}}</h3>
+      <button type='button' class='btn btn-default' {{action editDescription}}>Edit</button>
     </div>
     <ul class="list-group">
       {{#each desc in descriptions}}
@@ -76,19 +74,30 @@
     </ul>
   </div>
 
-  <div class="undestanding panel panel-primary">
+  <div class="idea panel panel-primary">
     <div class="panel-body">
       思路与方案
+      {{#if ideaEditing}}
+        <button type='button' class='btn btn-default' {{action saveIdea}}>Save</button>      
+      {{else}}
+        <button type='button' class='btn btn-default' {{action editIdea}}>Edit</button>      
+      {{/if}}
     </div>
-    <div class="panel-footer">
-    .......................
-    </div>
+    {{#if ideaEditing}}
+      {{textarea value=idea cols="80" rows="6"}}
+    {{else}}
+      <ul class="list-group">
+      {{#each ide in ideas}}
+        <li class="list-group-item">{{ide}}</li>
+      {{/each}}
+      </ul>
+    {{/if}}
   </div>
 
   <div class="task-items panel panel-primary">
     <div class="panel-body">
       子任务
-      <button type="button" class="btn btn-default">
+      <button type="button" class="btn btn-default" {{action addItem}}>
         <span class='glyphicon glyphicon-plus'></span>添加
       </button>
     </div>
@@ -97,11 +106,15 @@
         <tr>
           <th>名称</th>
           <th>状态</th>
+          <th>估时(工作日)</th>
           <th>操作</th>
         </tr>
       </thead>
       <tbody>
-
+        {{#each item in items}}
+          {{log item}}
+          {{render "taskItem" item}}
+        {{/each}}
       </tbody>
     <tbody>
     </table>
@@ -110,6 +123,9 @@
   <div class="gotcha panel panel-primary">
     <div class="panel-body">
       Gotchas
+      <button type="button" class="btn btn-default" {{action addGotcha}}>
+        <span class='glyphicon glyphicon-plus'></span>添加
+      </button>
     </div>
     <div class="panel-footer">
     .......................
@@ -119,6 +135,9 @@
   <div class="bugs panel panel-primary">
     <div class="panel-body">
       Bugs
+      <button type="button" class="btn btn-default" {{action addBug}}>
+        <span class='glyphicon glyphicon-plus'></span>添加
+      </button>
     </div>
     <div class="panel-footer">
     .......................
@@ -128,9 +147,32 @@
   <div class="summary panel panel-primary">
     <div class="panel-body">
       总结
+      <button type="button" class="btn btn-default" {{action addSummary}}>
+        <span class='glyphicon glyphicon-plus'></span>添加
+      </button>
     </div>
     <div class="panel-footer">
     .......................
     </div>
   </div>
+</script>
+
+<script type='text/x-handlebars' data-template-name='taskItem'>
+<tr>
+  {{#if editing}}
+    <td>{{input value=model.title}}</td>
+    <td>{{input value=model.state}}</td>
+    <td>{{input value=model.planTime}}</td>
+    <td>
+      <button type='button' {{action save}}>Save</button>
+    </td>
+  {{else}}
+    <td>{{model.title}}</td>
+    <td>{{model.state}}</td>
+    <td>{{model.planTime}}</td>
+    <td>
+      <button type='button' {{action edit}}>Edit</button>
+    </td>
+  {{/if}}
+</tr>
 </script>

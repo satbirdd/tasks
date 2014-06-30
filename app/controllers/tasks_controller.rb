@@ -8,14 +8,14 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: { tasks: @tasks }}
+      format.json { render json: { tasks: YAML.load(@tasks.to_json(methods: :item_ids)) }}
     end
   end
 
   # GET /tasks/1
   # GET /tasks/1.json
   def show
-    render json: {tasks: @task}
+    render json: { tasks: YAML.load(@task.to_json(methods: :item_ids)) }
   end
 
   # GET /tasks/new
@@ -75,6 +75,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:title, :description, :sprint_id, :state)
+      params.require(:task).permit(:title, :description, :sprint_id, :state, :idea)
     end
 end
