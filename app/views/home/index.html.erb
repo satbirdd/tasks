@@ -115,6 +115,16 @@
           {{log item}}
           {{render "taskItem" item}}
         {{/each}}
+        {{#if newItem}}
+          <tr>
+            <td>{{input value=newItem.title}}</td>
+            <td>{{input value=newItem.state}}</td>
+            <td>{{input value=newItem.planTime}}</td>
+            <td>
+              <button type='button' {{action saveNewItem}}>Save</button>
+            </td>
+          </tr>
+        {{/if}}
       </tbody>
     <tbody>
     </table>
