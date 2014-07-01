@@ -10,6 +10,10 @@ App.TaskItemController = Em.Controller.extend({
 			this.set('editing', false);
 			console.log(this.get('model'));
 			this.get('model').save();
+		},
+
+		remove: function() {
+			this.get('model').destroyRecord();
 		}
 	}
 });

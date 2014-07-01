@@ -1,5 +1,6 @@
 App.TasksIndexRoute = Em.Route.extend({
 	model: function() {
+		console.log('----------------->');
 		return this.store.find('task');
 	}
 });

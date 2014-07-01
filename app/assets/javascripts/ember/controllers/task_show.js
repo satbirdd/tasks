@@ -26,13 +26,7 @@ App.TasksTaskController = Em.ObjectController.extend({
 				taskId: this.get('id')
 			});
 
-			this.set('newItem', item);
-			// this.get('items').pushObject(item);
-		},
-
-		saveNewItem: function() {
-			var item = this.get('newItem');
-			item.save().then($.proxy(this.newSucc, this));
+			this.get('items').pushObject(item);
 		}
 	},
 

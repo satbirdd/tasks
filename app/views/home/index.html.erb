@@ -112,19 +112,8 @@
       </thead>
       <tbody>
         {{#each item in items}}
-          {{log item}}
           {{render "taskItem" item}}
         {{/each}}
-        {{#if newItem}}
-          <tr>
-            <td>{{input value=newItem.title}}</td>
-            <td>{{input value=newItem.state}}</td>
-            <td>{{input value=newItem.planTime}}</td>
-            <td>
-              <button type='button' {{action saveNewItem}}>Save</button>
-            </td>
-          </tr>
-        {{/if}}
       </tbody>
     <tbody>
     </table>
@@ -174,15 +163,25 @@
     <td>{{input value=model.state}}</td>
     <td>{{input value=model.planTime}}</td>
     <td>
-      <button type='button' {{action save}}>Save</button>
+      <button type='button' class='btn btn-default' {{action save}}>Save</button>
     </td>
   {{else}}
-    <td>{{model.title}}</td>
-    <td>{{model.state}}</td>
-    <td>{{model.planTime}}</td>
-    <td>
-      <button type='button' {{action edit}}>Edit</button>
-    </td>
+    {{#if model.isNew}}
+      <td>{{input value=model.title}}</td>
+      <td>{{input value=model.state}}</td>
+      <td>{{input value=model.planTime}}</td>
+      <td>
+        <button type='button' class='btn btn-default' {{action save}}>Save</button>
+      </td>
+    {{else}}
+      <td>{{model.title}}</td>
+      <td>{{model.state}}</td>
+      <td>{{model.planTime}}</td>
+      <td>
+        <button type='button' class='btn btn-default' {{action edit}}>Edit</button>
+        <button type='button' class='btn btn-default' {{action remove}}>Remove</button>
+      </td>
+    {{/if}}
   {{/if}}
 </tr>
 </script>
